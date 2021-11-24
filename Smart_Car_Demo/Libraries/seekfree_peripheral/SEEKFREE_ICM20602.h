@@ -33,6 +33,7 @@
 #define _SEEKFREE_ICM20602_h
 
 #include "common.h"
+#include "headfile.h"
 
 //------------------------Ó²¼þSPI--------------------------//
 #define ICM20602_SPI			SPI_2
@@ -128,5 +129,12 @@ void get_icm20602_gyro			(void);
 void icm20602_init_spi			(void);
 void get_icm20602_accdata_spi	(void);
 void get_icm20602_gyro_spi		(void);
+
+void Data_Filter(void);
+void KalmanFilter(float ACC_Angle);
+void Get_Attitude(void);	// ×ËÌ¬½âËã
+void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az);
+void ICM20602_Offset(void);
+void ICM20602_GetData(S_INT16_XYZ *GYRO, S_INT16_XYZ *ACC);
 
 #endif

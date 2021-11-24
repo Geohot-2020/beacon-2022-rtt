@@ -44,6 +44,36 @@ typedef volatile uint16		vuint16;												// 16 bits
 typedef volatile uint32		vuint32;												// 32 bits 
 typedef volatile uint64		vuint64;												// 64 bits 
 
+/*
+ * 定义坐标结构体
+ */
+typedef struct
+{
+    uint16 x;
+    uint16 y;
+} Site_t;
+
+typedef struct
+{
+	float X;
+	float Y;
+	float Z;
+} S_FLOAT_XYZ;
+
+typedef struct
+{
+	int32 X;
+	int32 Y;
+	int32 Z;
+} S_INT32_XYZ;
+
+typedef struct
+{
+	int16 X;
+	int16 Y;
+	int16 Z;
+} S_INT16_XYZ;
+
 
 typedef enum //枚举端口方向
 {

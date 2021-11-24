@@ -43,13 +43,13 @@
 int main(void)
 {
     gpio_init(B13, GPO, 0, GPO_PUSH_PULL);
-	
+		ips200_init();
 
 	while(1)
 	{
 		rt_thread_mdelay(100);
         gpio_toggle(B13);
-        
+        ips200_showfloat(0, 8, 1.1,2,2);
         
 	}
 }

@@ -68,5 +68,14 @@
 #include "SEEKFREE_WIRELESS.h"
 #include "SEEKFREE_MT9V03X.h"
 
+//-----用户头文件
+#include "display.h"
+#include "timer_pit.h"
+#include "encoder.h"
+#include "buzzer.h"
+#include "button.h"
+#include "motor.h"
+#include "elec.h"
+
 #endif
 

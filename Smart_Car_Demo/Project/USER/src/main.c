@@ -18,13 +18,7 @@
 ********************************************************************************************************************/
 
 #include "headfile.h"
-#include "display.h"
-#include "timer_pit.h"
-#include "encoder.h"
-#include "buzzer.h"
-#include "button.h"
-#include "motor.h"
-#include "elec.h"
+
 // *************************** 例程说明 ***************************
 // 
 // 测试需要准备逐飞科技 MM32F3277 核心板一块
@@ -62,7 +56,7 @@ int main(void)
     buzzer_init();
     button_init();
     motor_init();
-    elec_init();
+    // elec_init();
     
     timer_pit_init();
 
