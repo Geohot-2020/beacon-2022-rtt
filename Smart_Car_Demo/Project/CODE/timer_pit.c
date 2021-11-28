@@ -198,7 +198,7 @@ void timer_pit_init(void)
 void Balance_Init(void)
 {
     Attitude_Angle.X = 0;
-    Target_Angle.Y = -82;
+    Target_Angle.Y = -55;
     Tar_Ang_Vel.Y = 0;
     Tar_Ang_Vel.Z = 0;
 }
