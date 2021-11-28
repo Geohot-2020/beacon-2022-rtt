@@ -38,6 +38,7 @@
 int16 icm_gyro_x,icm_gyro_y,icm_gyro_z;
 int16 icm_acc_x,icm_acc_y,icm_acc_z;
 char Offset_OK = 0;
+float Zero_Angle;
 //-------------------------------------------------------------------------------------------------------------------
 // 以下函数是使用软件IIC通信
 //-------------------------------------------------------------------------------------------------------------------
@@ -543,7 +544,7 @@ void ICM20602_Offset(void)
 	for (i = 0; i < Count; i++)
 	{
 		ICM20602_GetData(&GYRO, &ACC);	// 读取陀螺仪数据
-		systick_delay_ms(2);
+		rt_thread_mdelay(2);
 		
 		temp[0] += ACC.X;
 		temp[1] += ACC.Y;
@@ -598,4 +599,88 @@ void ICM20602_GetData(S_INT16_XYZ *GYRO, S_INT16_XYZ *ACC)
 	}
 }
 
+void ICM20602_Init()
+{
+    Zero_Angle = -0.55;
+  Target_Angle.X = Zero_Angle*100;
+  icm20602_init_spi();            //陀螺仪初始化
+  rt_thread_mdelay(1000);
+  ICM20602_Offset();
+  
+  for (int i = 0; i < 200; i++)
+  {
+    for (int j = 0; j < 5; j++)
+      {
+      ICM20602_GetData(&GYRO, &ACC);	// 读取陀螺仪数据
+      Data_Filter();					// 对原始数据滑动滤波
+//      Get_Attitude();	// 姿态解算
+      }
+//    Get_Attitude();	// 姿态解算
+    accangle = asin(ACC_Real.Y);
+    KalmanFilter(accangle);
+    // Tar_Ang_Vel.X = PID_Realize(&Angle_PID, Angle, (int32)(Attitude_Angle.Y*100), Zero_Angle*100);
+    
+  }
+}
+
+/**
+ * @description: 巴特沃斯低通滤波,不会用，写了扔一边玩去
+ * @param {*}
+ * @return {*}
+ * @author: 郑有才
+ */
+
+typedef struct
+{
+ //volatile 
+   float Input_Butter[3];
+ //volatile 
+   float Output_Butter[3];
+}Butter_BufferData;
+
+
+typedef struct
+{
+  float a[3];
+  float b[3];
+}Butter_Parameter;
+
+
+float LPButterworth(float curr_input,Butter_BufferData *Buffer,Butter_Parameter *Parameter)
+
+{
+	static int LPB_Cnt=0;
+
+	/* 加速度计Butterworth滤波 */
+
+	/* 获取最新x(n) */
+
+	Buffer->Input_Butter[2]=curr_input;
+
+	if(LPB_Cnt>=500)
+	{
+		/* Butterworth滤波 */
+		Buffer->Output_Butter[2]=
+		Parameter->b[0] * Buffer->Input_Butter[2]
+		+Parameter->b[1] * Buffer->Input_Butter[1]
+		+Parameter->b[2] * Buffer->Input_Butter[0]
+		-Parameter->a[1] * Buffer->Output_Butter[1]
+		-Parameter->a[2] * Buffer->Output_Butter[0];
+	}
+	else
+	{
+		Buffer->Output_Butter[2]=Buffer->Input_Butter[2];
+		LPB_Cnt++;
+	}
+
+	/* x(n) 序列保存 */
+	Buffer->Input_Butter[0]=Buffer->Input_Butter[1];
+	Buffer->Input_Butter[1]=Buffer->Input_Butter[2];
+
+	/* y(n) 序列保存 */
+	Buffer->Output_Butter[0]=Buffer->Output_Butter[1];
+	Buffer->Output_Butter[1]=Buffer->Output_Butter[2];
+
+	return (Buffer->Output_Butter[2]);
+}
 

@@ -38,5 +38,5 @@ extern float Target_Angle_min,       //跑动前倾最大角度
 extern float accangle;
 
 void timer_pit_init(void);
-
+void Balance_Init(void);
 #endif

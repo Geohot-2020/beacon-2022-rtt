@@ -76,6 +76,6 @@
 #include "button.h"
 #include "motor.h"
 #include "elec.h"
-
+#include "pid.h"
 #endif
 

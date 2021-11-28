@@ -488,6 +488,16 @@
               <FileType>5</FileType>
               <FilePath>..\CODE\timer_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODE\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODE\pid.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

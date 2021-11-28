@@ -119,7 +119,7 @@
 
 extern int16 icm_gyro_x,icm_gyro_y,icm_gyro_z;
 extern int16 icm_acc_x,icm_acc_y,icm_acc_z;
-
+extern float Zero_Angle;
 //--------软件IIC--------------
 void icm20602_init				(void);
 void get_icm20602_accdata		(void);
@@ -136,5 +136,6 @@ void Get_Attitude(void);	// 姿态解算
 void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az);
 void ICM20602_Offset(void);
 void ICM20602_GetData(S_INT16_XYZ *GYRO, S_INT16_XYZ *ACC);
-
+//总初始化
+void ICM20602_Init();
 #endif

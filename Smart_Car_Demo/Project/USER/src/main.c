@@ -47,18 +47,24 @@ int main(void)
 {
 	camera_sem = rt_sem_create("camera", 0, RT_IPC_FLAG_FIFO);
     
-    
+    Balance_Init();
     mt9v03x_init();
-    icm20602_init_spi();
-    
+    ICM20602_Init();
     display_init();
     encoder_init();
     buzzer_init();
     button_init();
     motor_init();
+    PID_Parameter_Init(&MOTOR_PID);	    //速度环PID参数初始化
+    PID_Parameter_Init(&Angle_PID);	    //角度环PID参数初始化
+    PID_Parameter_Init(&Ang_Vel_PID);	//角速度环PID参数初始化
+    PID_Parameter_Init(&Direct_PID);	//转向环PID参数初始化
+    PID_Parameter_Init(&Distance_PID);	//位置环PID参数初始化
     // elec_init();
     
     timer_pit_init();
+	
+	
 
 	while(1)
 	{
@@ -71,3 +77,4 @@ int main(void)
 	}
 }
 // **************************** 代码区域 ****************************
+
