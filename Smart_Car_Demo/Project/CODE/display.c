@@ -41,7 +41,9 @@ void display_entry(void *parameter)
     {
         ips200_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
         ips200_showfloat(0, 8, GYRO_Real.Y,2,2);
-        ips200_showfloat(0, 9, Tar_Ang_Vel.Y,2,2);
+        ips200_showfloat(0, 9, accangle,2,2);
+			ips200_showfloat(0, 17, Tar_Ang_Vel.Y,2,2);
+			ips200_showfloat(0, 18, Target_Angle.Y,2,2);
         ips200_showint16(0, 10, speed_l);
         ips200_showint16(0, 11, speed_r);
         ips200_showint16(0, 12, Left_MOTOR_Duty);

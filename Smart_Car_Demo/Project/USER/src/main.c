@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: v1.0
+ * @Autor: 郑有才
+ * @Date: 2021-11-24 14:46:45
+ * @LastEditors: 郑有才
+ * @LastEditTime: 2021-11-30 16:17:33
+ */
 /*********************************************************************************************************************
 * COPYRIGHT NOTICE
 * Copyright (c) 2019,逐飞科技
@@ -55,6 +63,7 @@ int main(void)
     buzzer_init();
     button_init();
     motor_init();
+    seekfree_wireless_init();
     PID_Parameter_Init(&MOTOR_PID);	    //速度环PID参数初始化
     PID_Parameter_Init(&Angle_PID);	    //角度环PID参数初始化
     PID_Parameter_Init(&Ang_Vel_PID);	//角速度环PID参数初始化

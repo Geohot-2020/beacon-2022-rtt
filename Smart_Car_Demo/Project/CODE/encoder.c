@@ -57,4 +57,5 @@ void encoder_get(void)
     tim_encoder_rst(ENCODER1_TIM);
     speed_r = tim_encoder_get_count(ENCODER2_TIM);
     tim_encoder_rst(ENCODER2_TIM);
+    Speed_Now = speed_r;
 }

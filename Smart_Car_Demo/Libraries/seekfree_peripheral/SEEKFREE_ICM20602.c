@@ -601,8 +601,8 @@ void ICM20602_GetData(S_INT16_XYZ *GYRO, S_INT16_XYZ *ACC)
 
 void ICM20602_Init()
 {
-    Zero_Angle = -0.55;
-  Target_Angle.X = Zero_Angle*100;
+    Zero_Angle = 1.00;
+  Target_Angle.Y = Zero_Angle*100;
   icm20602_init_spi();            //Õ”¬›“«≥ı ºªØ
   rt_thread_mdelay(1000);
   ICM20602_Offset();
@@ -618,7 +618,7 @@ void ICM20602_Init()
 //    Get_Attitude();	// ◊ÀÃ¨Ω‚À„
     accangle = asin(ACC_Real.Y);
     KalmanFilter(accangle);
-    // Tar_Ang_Vel.X = PID_Realize(&Angle_PID, Angle, (int32)(Attitude_Angle.Y*100), Zero_Angle*100);
+    //Tar_Ang_Vel.Y = PID_Realize(&Angle_PID, Angle, (int32)(Attitude_Angle.Y*100), Zero_Angle*100);
     
   }
 }
