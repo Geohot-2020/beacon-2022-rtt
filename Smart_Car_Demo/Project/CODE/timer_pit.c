@@ -65,10 +65,11 @@ int32
 	Theory_Duty = 0,        // 理论直立占空比
 	Vel_Set = 0,	        // 目标转向角速度
     Direct_Parameter = 0,   // 转向系数
-	Direct_Last = 0;
+	Direct_Last = 0,
+    Speed_dif = 0;
 
-float Target_Angle_min=-10,       //跑动前倾最大角度
-      Target_Angle_max=120;       //跑动后仰最大角度
+float Target_Angle_min=-75,       //跑动前倾最大角度
+      Target_Angle_max=-65;       //跑动后仰最大角度
 
 float accangle;
 
@@ -99,16 +100,19 @@ void timer1_pit_entry(void *parameter)
         KalmanFilter(accangle);     //姿态解算，卡尔曼滤波
         //printf("%.2f, %.2f\n",accangle, Attitude_Angle.Y);
         // seekfree_wireless_send_buff((uint8 *)"\r\nSEEKFREE wireless test.", 25);		// 发送测试信息
-        Theory_Duty -= PID_Increase(&Ang_Vel_PID, Ang_Vel, (int32)GYRO_Real.Y*10, (int32)(Tar_Ang_Vel.Y)); //增量式PID
-        Theory_Duty = range_protect(Theory_Duty, -10000, 10000);  //限幅
+        Theory_Duty += -PID_Increase(&Ang_Vel_PID, Ang_Vel, (int32)GYRO_Real.Y*10, (int32)(Tar_Ang_Vel.Y)); //增量式PID
+        Theory_Duty = range_protect(Theory_Duty, -18000, 18000);  //限幅
 
-        /*--------------------转向环------------------*/
+        /*--------------------转向环，用角速度环做内环控制转向------------------*/
+            Direct_Parameter = -PID_Realize(&Direct_PID, Direct, (int32)GYRO_Real.Z, Speed_Min);
+            Direct_Parameter = range_protect(Direct_Parameter, -18000, 18000);
+        Direct_Last = Direct_Last*0.2 + Direct_Parameter*0.8;
         
-        Left_MOTOR_Duty = Theory_Duty;
-        Right_MOTOR_Duty = Theory_Duty;
+        Left_MOTOR_Duty = Theory_Duty - Direct_Last ;
+        Right_MOTOR_Duty = Theory_Duty + Direct_Last;
 
-         motor_control(-Left_MOTOR_Duty, -Right_MOTOR_Duty);
-        //motor_control(5000, 5000);
+        motor_control(-Left_MOTOR_Duty, -Right_MOTOR_Duty);
+        //motor_control(0, 7000);
     }
 
     /**
@@ -120,22 +124,22 @@ void timer1_pit_entry(void *parameter)
     if(0 == (time%10))
     {
         encoder_get();      //获取当前速度
-
         Tar_Ang_Vel.Y = PID_Realize(&Angle_PID, Angle, (int32)(accangle*100), (int32)Target_Angle.Y);      //增量式PID
-        Tar_Ang_Vel.Y = range_protect(Tar_Ang_Vel.Y, -10000, 10000);
+        Tar_Ang_Vel.Y = range_protect(Tar_Ang_Vel.Y, -15000, 15000);
     }
 
     /**
-     * @description: 速度环50ms
+     * @description: 速度环50ms，调P；
      * @param {*}
      * @return {*}
      * @author: 郑有才
      */    
     if(0 == (time%50))
     {
-        Target_Angle.Y = -PID_Realize(&MOTOR_PID, MOTOR, Speed_Now, Speed_Set);
+        Target_Angle.Y = PID_Realize(&MOTOR_PID, MOTOR, Speed_Now, Speed_Set);
         Target_Angle.Y += Zero_Angle*100;
         Target_Angle.Y = range_protect((int32)Target_Angle.Y, Target_Angle_min, Target_Angle_max);
+			//Target_Angle.Y = Zero_Angle*100;
     }
 
 }
@@ -164,6 +168,7 @@ void Balance_Init(void)
     Target_Angle.Y = 0;
     Tar_Ang_Vel.Y = 0;
     Tar_Ang_Vel.Z = 0;
+		Speed_Set = 0;
 }
 
 

@@ -601,7 +601,7 @@ void ICM20602_GetData(S_INT16_XYZ *GYRO, S_INT16_XYZ *ACC)
 
 void ICM20602_Init()
 {
-    Zero_Angle = 1.00;
+    Zero_Angle = -0.71;
   Target_Angle.Y = Zero_Angle*100;
   icm20602_init_spi();            //Õ”¬›“«≥ı ºªØ
   rt_thread_mdelay(1000);

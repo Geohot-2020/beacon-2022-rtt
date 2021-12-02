@@ -185,8 +185,8 @@ void motor_control(int32 left, int32 right)
  */
 void motor_export()
 {
-    Left_MOTOR_Duty=range_protect(Left_MOTOR_Duty, -12000, 12000);
-    Right_MOTOR_Duty=range_protect(Right_MOTOR_Duty, -12000, 12000);
+    Left_MOTOR_Duty=range_protect(Left_MOTOR_Duty, -18000, 18000);
+    Right_MOTOR_Duty=range_protect(Right_MOTOR_Duty, -18000, 18000);
 
     if(Left_MOTOR_Duty >= 0)                // зѓВре§зЊ
     {

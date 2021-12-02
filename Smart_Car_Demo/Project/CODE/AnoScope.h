@@ -1,12 +1,4 @@
 /*
- * @Description: 
- * @Version: v1.0
- * @Autor: 郑有才
- * @Date: 2021-11-24 14:46:45
- * @LastEditors: 郑有才
- * @LastEditTime: 2021-11-30 21:38:24
- */
-/*
  *                        _oo0oo_
  *                       o8888888o
  *                       88" . "88
@@ -36,34 +28,16 @@
  * @Description: 
  * @Version: v1.0
  * @Autor: 郑有才
- * @Date: 2021-11-24 14:46:45
+ * @Date: 2021-12-02 14:33:53
  * @LastEditors: 郑有才
- * @LastEditTime: 2021-11-26 16:58:04
+ * @LastEditTime: 2021-12-02 14:33:53
  */
-#include "encoder.h"
+#ifndef _ANOSCOPE_h
+#define _ANOSCOPE_h
+#include "stdint.h"
 
-#define ENCODER1_TIM		TIM_3
-#define ENCODER1_A			TIM_3_ENC1_B04
-#define ENCODER1_B			TIM_3_ENC2_B05
+void ANO_DT_send_int16(short data1, short data2, short data3, short data4, short data5, short data6, short data7, short data8 );
+void ANO_DT_send_int16byte16(short data1, short data2, short data3, short data4, short data5, short data6, short data7, short data8 );
+void ANO_DT_send_int16byte18(short data1, short data2, short data3, short data4, short data5, short data6, short data7, short data8, short data9 );
 
-#define ENCODER2_TIM		TIM_4
-#define ENCODER2_A			TIM_4_ENC1_B06
-#define ENCODER2_B			TIM_4_ENC2_B07
-
-uint16 speed_l, speed_r;
-
-void encoder_init(void)
-{
-    tim_encoder_init(ENCODER1_TIM, ENCODER1_A, ENCODER1_B);
-	tim_encoder_init(ENCODER2_TIM, ENCODER2_A, ENCODER2_B);
-}
-
-
-void encoder_get(void)
-{
-    speed_l = -tim_encoder_get_count(ENCODER1_TIM);
-    tim_encoder_rst(ENCODER1_TIM);
-    speed_r = tim_encoder_get_count(ENCODER2_TIM);
-    tim_encoder_rst(ENCODER2_TIM);
-    Speed_Now = (speed_l+speed_r)/2.0;
-}
+#endif

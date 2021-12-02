@@ -38,11 +38,10 @@
 #include "headfile.h"
 
 PID MOTOR_PID, Angle_PID, Ang_Vel_PID, Direct_PID, Turn_PID, Distance_PID;//定义舵机和电机的PID参数结构体
-float MOTOR[4]   = {0, 0, 0, 1000};			// 速度环PID	最后一项为积分限幅
-float Angle[4]   = {3, 0, 0.8, 10000};		// 角度环PID
-float Ang_Vel[4] = {20, 1.0, 0, 10000};				// 角速度环PID,先调I，再调P，I来回晃，P基本立住
-//float Ang_Vel[4] = {0.72, 0.54, 0, 5000};				// 角速度环PID,先调I，再调P，I来回晃，P基本立住
-float Direct[4]  = {0.017, 0.001, 0.023, 70};	// 转向环PID 位置	0.017	0.02
+float MOTOR[4]   = {0, 0, 0, 10000};			// 速度环PID	最后一项为积分限幅
+float Angle[4]   = {25, 0, 29, 18000};		// 角度环PID
+float Ang_Vel[4] = {0.6, 0.8, 0, 18000};				// 角速度环PID,先调I，再调P，I来回晃，P基本立住······························
+float Direct[4]  = {0, 0.8, 0, 18000};	// 转向环PID 位置	0.017	0.02
 /*******转向外环动态PID	中线法********/
 float Turn[5][4] = {{100, 2, 1, 100},   //起步转向参数PID
 		    {100, 3, 2, 100},   //低速转向参数PID	

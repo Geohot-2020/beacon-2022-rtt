@@ -498,6 +498,16 @@
               <FileType>5</FileType>
               <FilePath>..\CODE\pid.h</FilePath>
             </File>
+            <File>
+              <FileName>AnoScope.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODE\AnoScope.c</FilePath>
+            </File>
+            <File>
+              <FileName>AnoScope.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODE\AnoScope.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

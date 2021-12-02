@@ -23,6 +23,8 @@
         "timer_pit.h": "c",
         "board.h": "c",
         "common.h": "c",
-        "seekfree_icm20602.h": "c"
+        "seekfree_icm20602.h": "c",
+        "motor.h": "c",
+        "pid.h": "c"
     }
 }

@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: v1.0
+ * @Autor: 郑有才
+ * @Date: 2021-11-24 14:46:45
+ * @LastEditors: 郑有才
+ * @LastEditTime: 2021-12-02 14:30:03
+ */
 /*********************************************************************************************************************
 * COPYRIGHT NOTICE
 * Copyright (c) 2019,逐飞科技
@@ -77,5 +85,6 @@
 #include "motor.h"
 #include "elec.h"
 #include "pid.h"
+#include "AnoScope.h"
 #endif
 

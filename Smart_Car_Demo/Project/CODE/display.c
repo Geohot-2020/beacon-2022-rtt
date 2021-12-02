@@ -1,4 +1,12 @@
 /*
+ * @Description: 显示
+ * @Version: v1.0
+ * @Autor: 郑有才
+ * @Date: 2021-11-24 14:46:45
+ * @LastEditors: 郑有才
+ * @LastEditTime: 2021-12-01 16:34:13
+ */
+/*
  *                        _oo0oo_
  *                       o8888888o
  *                       88" . "88
@@ -24,14 +32,6 @@
  *            佛祖保佑       永不宕机     永无BUG
  */
 
-/*
- * @Description: 显示
- * @Version: v1.0
- * @Autor: 郑有才
- * @Date: 2021-11-24 14:46:45
- * @LastEditors: 郑有才
- * @LastEditTime: 2021-11-26 16:59:42
- */
 #include "headfile.h"
 
 
@@ -42,6 +42,7 @@ void display_entry(void *parameter)
         ips200_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
         ips200_showfloat(0, 8, GYRO_Real.Y,2,2);
         ips200_showfloat(0, 9, accangle,2,2);
+            ips200_showfloat(0, 16, GYRO_Real.Z,2,2);
 			ips200_showfloat(0, 17, Tar_Ang_Vel.Y,2,2);
 			ips200_showfloat(0, 18, Target_Angle.Y,2,2);
         ips200_showint16(0, 10, speed_l);

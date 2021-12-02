@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\MM32F3277.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\MM32F3277.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Nov 30 20:09:24 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Dec 02 21:41:59 2021
 <BR><P>
 <H3>Maximum Stack Usage =        476 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -508,6 +508,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer1_pit_entry
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;asin
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 </UL>
@@ -535,6 +536,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zf_sprintf
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer1_pit_entry
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;asin
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 </UL>
@@ -544,7 +546,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;asin
+<BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;encoder_get
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;asin
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_invalid
 </UL>
 
@@ -581,6 +584,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zf_sprintf
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer1_pit_entry
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;encoder_get
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_entry
 </UL>
 
@@ -601,6 +606,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zf_sprintf
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer1_pit_entry
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;encoder_get
 </UL>
 
 <P><STRONG><a name="[a0]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
@@ -685,8 +692,8 @@ Global Symbols
 <P><STRONG><a name="[7c]"></a>_double_round</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, depilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
@@ -747,7 +754,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockToXX
 </UL>
 
-<P><STRONG><a name="[137]"></a>Balance_Init</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer_pit.o(i.Balance_Init))
+<P><STRONG><a name="[137]"></a>Balance_Init</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, timer_pit.o(i.Balance_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -1040,7 +1047,7 @@ Global Symbols
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ICM20602_Offset
 </UL>
 
-<P><STRONG><a name="[9b]"></a>ICM20602_Init</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, seekfree_icm20602.o(i.ICM20602_Init))
+<P><STRONG><a name="[9b]"></a>ICM20602_Init</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, seekfree_icm20602.o(i.ICM20602_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 372<LI>Call Chain = ICM20602_Init &rArr; ICM20602_Offset &rArr; rt_thread_mdelay &rArr; rt_thread_sleep &rArr; rt_timer_start &rArr; rt_object_get_type &rArr; rt_assert_handler &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -1062,8 +1069,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ICM20602_GetData
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_thread_mdelay
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ldivmod
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ICM20602_Init
 </UL>
@@ -1402,8 +1409,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
@@ -1509,7 +1516,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> msh.o(FSymTab)
 </UL>
-<P><STRONG><a name="[4f]"></a>display_entry</STRONG> (Thumb, 184 bytes, Stack size 16 bytes, display.o(i.display_entry))
+<P><STRONG><a name="[4f]"></a>display_entry</STRONG> (Thumb, 212 bytes, Stack size 16 bytes, display.o(i.display_entry))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = display_entry &rArr; ips200_showfloat &rArr; zf_sprintf &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ips200_showint16
@@ -1530,11 +1537,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[f4]"></a>encoder_get</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, encoder.o(i.encoder_get))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = encoder_get
+<P><STRONG><a name="[f4]"></a>encoder_get</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, encoder.o(i.encoder_get))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = encoder_get &rArr; __aeabi_i2d &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim_encoder_rst
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim_encoder_get_count
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 </UL>
 <BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer1_pit_entry
 </UL>
@@ -1562,10 +1572,10 @@ Global Symbols
 <P><STRONG><a name="[fe]"></a>finsh_get_prompt</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, shell.o(i.finsh_get_prompt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = finsh_get_prompt &rArr; strncpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_is_used
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncpy
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcat
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_is_used
 </UL>
 <BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;finsh_thread_entry
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shell_handle_history
@@ -1602,9 +1612,6 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_memmove
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_kprintf
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;finsh_get_prompt
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shell_push_history
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shell_handle_history
@@ -1612,6 +1619,9 @@ Global Symbols
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;finsh_getchar
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_is_used
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_exec
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> shell.o(i.finsh_system_init)
 </UL>
@@ -1752,9 +1762,9 @@ Global Symbols
 <P><STRONG><a name="[f0]"></a>ips200_showfloat</STRONG> (Thumb, 184 bytes, Stack size 96 bytes, seekfree_ips200_parallel8.o(i.ips200_showfloat))
 <BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = ips200_showfloat &rArr; zf_sprintf &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zf_sprintf
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zf_sprintf
 <LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ips200_showstr
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_entry
 </UL>
@@ -2001,10 +2011,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_strncpy
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_kprintf
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncmp
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_help
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;str_common
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncmp
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shell_auto_complete
 </UL>
@@ -3266,13 +3276,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;encoder_get
 </UL>
 
-<P><STRONG><a name="[53]"></a>timer1_pit_entry</STRONG> (Thumb, 362 bytes, Stack size 24 bytes, timer_pit.o(i.timer1_pit_entry))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = timer1_pit_entry &rArr; asin &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[53]"></a>timer1_pit_entry</STRONG> (Thumb, 478 bytes, Stack size 40 bytes, timer_pit.o(i.timer1_pit_entry))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = timer1_pit_entry &rArr; asin &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Realize
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Increase
@@ -3281,7 +3293,9 @@ Global Symbols
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Data_Filter
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;range_protect
 <LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_control
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;encoder_get
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;asin
 </UL>
@@ -3752,9 +3766,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 284<LI>Call Chain = _msh_exec_cmd &rArr; msh_split &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_assert_handler
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_split
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_get_cmd
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msh_exec
 </UL>

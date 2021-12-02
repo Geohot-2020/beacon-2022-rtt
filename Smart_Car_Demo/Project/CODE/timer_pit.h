@@ -30,7 +30,8 @@ extern int32
     Theory_Duty,    // 理论直立占空比
 	Vel_Set,		    // 目标转向角速度
     Direct_Parameter,   // 转向系数
-	Direct_Last;
+	Direct_Last,
+	Speed_dif;
 
 extern float Target_Angle_min,       //跑动前倾最大角度
              Target_Angle_max;       //跑动后仰最大角度

@@ -9,6 +9,7 @@
 ".\objects\motor.o"
 ".\objects\timer_pit.o"
 ".\objects\pid.o"
+".\objects\anoscope.o"
 ".\objects\board.o"
 ".\objects\common.o"
 ".\objects\seekfree_printf.o"
