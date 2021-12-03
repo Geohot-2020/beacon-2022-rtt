@@ -68,8 +68,8 @@ int32
 	Direct_Last = 0,
     Speed_dif = 0;
 
-float Target_Angle_min=-75,       //跑动前倾最大角度
-      Target_Angle_max=-65;       //跑动后仰最大角度
+float Target_Angle_min=-63,       //跑动前倾最大角度
+      Target_Angle_max=-73;       //跑动后仰最大角度
 
 float accangle;
 
@@ -103,7 +103,7 @@ void timer1_pit_entry(void *parameter)
         Theory_Duty += -PID_Increase(&Ang_Vel_PID, Ang_Vel, (int32)GYRO_Real.Y*10, (int32)(Tar_Ang_Vel.Y)); //增量式PID
         Theory_Duty = range_protect(Theory_Duty, -18000, 18000);  //限幅
 
-        /*--------------------转向环，用角速度环做内环控制转向------------------*/
+        /*--------------------转向环，用角速度环做内环控制转向,加I解决电机转速问题------------------*/
             Direct_Parameter = -PID_Realize(&Direct_PID, Direct, (int32)GYRO_Real.Z, Speed_Min);
             Direct_Parameter = range_protect(Direct_Parameter, -18000, 18000);
         Direct_Last = Direct_Last*0.2 + Direct_Parameter*0.8;
@@ -168,7 +168,7 @@ void Balance_Init(void)
     Target_Angle.Y = 0;
     Tar_Ang_Vel.Y = 0;
     Tar_Ang_Vel.Z = 0;
-		Speed_Set = 0;
+		Speed_Set = -350;
 }
 
 
