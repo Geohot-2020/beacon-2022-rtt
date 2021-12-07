@@ -32,7 +32,7 @@
 #include "zf_gpio.h"
 #include "zf_exti.h"
 #include "zf_camera.h"
-
+#include "rtthread.h"
 #include "SEEKFREE_MT9V03X.h"
 
 uint8 mt9v03x_finish_flag = 0;												// 一场图像采集完成标志位
@@ -360,10 +360,12 @@ void mt9v03x_vsync(void)
 // @since		v1.0
 // Sample usage:
 //-------------------------------------------------------------------------------------------------------------------
+extern rt_sem_t camera_sem;
 void mt9v03x_dma(void)
 {
 	MT9V03X_DMA_CH->CCR &= (uint16)(~DMA_CCR_EN);							// 关闭DMA1
 	mt9v03x_finish_flag = 1;												// 一副图像从采集开始到采集结束耗时3.8MS左右(50FPS、188*120分辨率)
+	rt_sem_release(camera_sem);												// 信号量
 }
 
 //-------------------------------------------------------------------------------------------------------------------

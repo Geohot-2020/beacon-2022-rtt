@@ -66,4 +66,5 @@ void encoder_get(void)
     speed_r = tim_encoder_get_count(ENCODER2_TIM);
     tim_encoder_rst(ENCODER2_TIM);
     Speed_Now = (speed_l+speed_r)/2.0;
+	//printf("speed_Now: %d\r\n",Speed_Now);
 }

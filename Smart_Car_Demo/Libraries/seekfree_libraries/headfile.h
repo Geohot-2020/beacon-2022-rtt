@@ -86,5 +86,6 @@
 #include "elec.h"
 #include "pid.h"
 #include "AnoScope.h"
+#include "camera.h"
 #endif
 

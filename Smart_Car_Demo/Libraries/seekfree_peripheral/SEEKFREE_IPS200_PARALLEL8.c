@@ -884,3 +884,5 @@ void ips200_display_chinese(uint16 x, uint16 y, uint8 size, const uint8 *p, uint
         }   
     }
 }
+
+

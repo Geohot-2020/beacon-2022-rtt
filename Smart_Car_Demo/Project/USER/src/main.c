@@ -4,7 +4,7 @@
  * @Autor: 郑有才
  * @Date: 2021-11-24 14:46:45
  * @LastEditors: 郑有才
- * @LastEditTime: 2021-11-30 16:17:33
+ * @LastEditTime: 2021-12-07 10:50:47
  */
 /*********************************************************************************************************************
 * COPYRIGHT NOTICE
@@ -49,10 +49,12 @@
 
 // **************************** 代码区域 ****************************
 
-rt_sem_t camera_sem;
+
 
 int main(void)
 {
+    uint8 tm=0;
+
 	camera_sem = rt_sem_create("camera", 0, RT_IPC_FLAG_FIFO);
     
     Balance_Init();
@@ -74,15 +76,21 @@ int main(void)
     timer_pit_init();
 	
 	
+	gpio_init(B13, GPO, 0, GPO_PUSH_PULL);
+	
 
 	while(1)
 	{
 		//等待摄像头采集完毕
         rt_sem_take(camera_sem, RT_WAITING_FOREVER);
-        //rt_thread_mdelay(10);
-        //开始处理摄像头图像
-        
-        
+		
+        camera_dif = Camera_Control();
+        mt9v03x_finish_flag=0;
+		printf("camera_dif: %f\r\n", camera_dif);
+		showBeacon();
+		gpio_toggle(B13);
+		
+		
 	}
 }
 // **************************** 代码区域 ****************************

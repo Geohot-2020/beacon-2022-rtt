@@ -68,8 +68,8 @@ int32
 	Direct_Last = 0,
     Speed_dif = 0;
 
-float Target_Angle_min=-63,       //跑动前倾最大角度
-      Target_Angle_max=-73;       //跑动后仰最大角度
+float Target_Angle_min=-73,       //跑动前倾最大角度
+      Target_Angle_max=-50;       //跑动后仰最大角度
 
 float accangle;
 
@@ -106,9 +106,9 @@ void timer1_pit_entry(void *parameter)
         /*--------------------转向环，用角速度环做内环控制转向,加I解决电机转速问题------------------*/
             Direct_Parameter = -PID_Realize(&Direct_PID, Direct, (int32)GYRO_Real.Z, Speed_Min);
             Direct_Parameter = range_protect(Direct_Parameter, -18000, 18000);
-        Direct_Last = Direct_Last*0.2 + Direct_Parameter*0.8;
+        Direct_Last = Direct_Last*0.2 + Direct_Parameter*0.8 - camera_dif*10;
         
-        Left_MOTOR_Duty = Theory_Duty - Direct_Last ;
+        Left_MOTOR_Duty = Theory_Duty - Direct_Last;
         Right_MOTOR_Duty = Theory_Duty + Direct_Last;
 
         motor_control(-Left_MOTOR_Duty, -Right_MOTOR_Duty);
@@ -126,6 +126,19 @@ void timer1_pit_entry(void *parameter)
         encoder_get();      //获取当前速度
         Tar_Ang_Vel.Y = PID_Realize(&Angle_PID, Angle, (int32)(accangle*100), (int32)Target_Angle.Y);      //增量式PID
         Tar_Ang_Vel.Y = range_protect(Tar_Ang_Vel.Y, -15000, 15000);
+    }
+
+    /**
+     * @description: 摄像头采集， 20ms采集一次
+     * @param {*}
+     * @return {*}
+     * @author: 郑有才
+     */    
+    if(0 == (time%20))
+    {
+        //rt_sem_take(camera_sem, RT_WAITING_FOREVER);
+        //camera_dif = Camera_Control();
+			//printf("camera_dif: %f\r\n", camera_dif);
     }
 
     /**
@@ -168,7 +181,7 @@ void Balance_Init(void)
     Target_Angle.Y = 0;
     Tar_Ang_Vel.Y = 0;
     Tar_Ang_Vel.Z = 0;
-		Speed_Set = -350;
+		Speed_Set = 100;
 }
 
 
