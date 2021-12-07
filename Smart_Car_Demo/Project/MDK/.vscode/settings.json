@@ -27,6 +27,7 @@
         "motor.h": "c",
         "pid.h": "c",
         "seekfree_mt9v03x.h": "c",
-        "zf_camera.h": "c"
+        "zf_camera.h": "c",
+        "zf_exti.h": "c"
     }
 }

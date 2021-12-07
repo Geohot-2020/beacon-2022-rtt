@@ -73,6 +73,8 @@ float Target_Angle_min=-73,       //跑动前倾最大角度
 
 float accangle;
 
+uint8  cameraFlag=0;
+
 
 /**
  * @description: 串级PID
@@ -106,7 +108,7 @@ void timer1_pit_entry(void *parameter)
         /*--------------------转向环，用角速度环做内环控制转向,加I解决电机转速问题------------------*/
             Direct_Parameter = -PID_Realize(&Direct_PID, Direct, (int32)GYRO_Real.Z, Speed_Min);
             Direct_Parameter = range_protect(Direct_Parameter, -18000, 18000);
-        Direct_Last = Direct_Last*0.2 + Direct_Parameter*0.8 - camera_dif*10;
+        Direct_Last = Direct_Last*0.2 + Direct_Parameter*0.8 ;
         
         Left_MOTOR_Duty = Theory_Duty - Direct_Last;
         Right_MOTOR_Duty = Theory_Duty + Direct_Last;
@@ -129,7 +131,7 @@ void timer1_pit_entry(void *parameter)
     }
 
     /**
-     * @description: 摄像头采集， 20ms采集一次
+     * @description: 摄像头采集， 20ms处理一次
      * @param {*}
      * @return {*}
      * @author: 郑有才

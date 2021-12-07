@@ -4,7 +4,7 @@
  * @Autor: 郑有才
  * @Date: 2021-12-05 11:39:48
  * @LastEditors: 郑有才
- * @LastEditTime: 2021-12-07 10:51:01
+ * @LastEditTime: 2021-12-07 15:54:04
  */
 
 #ifndef _CAMERA_h
@@ -32,4 +32,5 @@ void Bin_Image_Filter (void);
 void Seek_Beacon (void);
 float Camera_Control(void);
 void showBeacon();
+void camera_init(void);
 #endif

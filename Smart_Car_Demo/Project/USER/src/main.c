@@ -4,7 +4,7 @@
  * @Autor: 郑有才
  * @Date: 2021-11-24 14:46:45
  * @LastEditors: 郑有才
- * @LastEditTime: 2021-12-07 10:50:47
+ * @LastEditTime: 2021-12-07 19:43:57
  */
 /*********************************************************************************************************************
 * COPYRIGHT NOTICE
@@ -58,14 +58,15 @@ int main(void)
 	camera_sem = rt_sem_create("camera", 0, RT_IPC_FLAG_FIFO);
     
     Balance_Init();
-    mt9v03x_init();
+    camera_init();
+    //mt9v03x_init();
     ICM20602_Init();
     display_init();
     encoder_init();
     buzzer_init();
     button_init();
     motor_init();
-    seekfree_wireless_init();
+    //seekfree_wireless_init();
     PID_Parameter_Init(&MOTOR_PID);	    //速度环PID参数初始化
     PID_Parameter_Init(&Angle_PID);	    //角度环PID参数初始化
     PID_Parameter_Init(&Ang_Vel_PID);	//角速度环PID参数初始化
@@ -76,19 +77,24 @@ int main(void)
     timer_pit_init();
 	
 	
-	gpio_init(B13, GPO, 0, GPO_PUSH_PULL);
+	//gpio_init(B13, GPO, 0, GPO_PUSH_PULL);
 	
 
 	while(1)
 	{
 		//等待摄像头采集完毕
-        rt_sem_take(camera_sem, RT_WAITING_FOREVER);
+         //rt_sem_take(camera_sem, RT_WAITING_FOREVER);
+		 	rt_thread_mdelay(0);
+        //camera_dif = Camera_Control();
+        // mt9v03x_finish_flag=0;
+		//printf("camera_dif: %f\r\n", camera_dif);
 		
-        camera_dif = Camera_Control();
-        mt9v03x_finish_flag=0;
-		printf("camera_dif: %f\r\n", camera_dif);
-		showBeacon();
-		gpio_toggle(B13);
+		// showBeacon();
+		
+		//gpio_toggle(B13);
+
+        //rt_thread_mdelay(100);
+		
 		
 		
 	}

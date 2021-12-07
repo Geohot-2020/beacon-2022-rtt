@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: v1.0
+ * @Autor: 郑有才
+ * @Date: 2021-11-24 14:46:45
+ * @LastEditors: 郑有才
+ * @LastEditTime: 2021-12-07 16:30:46
+ */
 #ifndef _timer_pit_h
 #define _timer_pit_h
 
@@ -37,6 +45,8 @@ extern float Target_Angle_min,       //跑动前倾最大角度
              Target_Angle_max;       //跑动后仰最大角度
 
 extern float accangle;
+
+extern uint8  cameraFlag;
 
 void timer_pit_init(void);
 void Balance_Init(void);

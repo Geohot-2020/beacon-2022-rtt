@@ -4,7 +4,7 @@
  * @Autor: 郑有才
  * @Date: 2021-12-05 11:38:26
  * @LastEditors: 郑有才
- * @LastEditTime: 2021-12-07 10:49:43
+ * @LastEditTime: 2021-12-07 19:56:39
  */
 
 /*
@@ -59,7 +59,7 @@ rt_sem_t camera_sem;
  */
 void Get_Use_Image(void)
 {
-	rt_enter_critical();
+	//rt_enter_critical();
     short i = 0, j = 0, row = 0, line = 0;
 
     for (i = 0; i < MT9V03X_H; i++)
@@ -72,7 +72,7 @@ void Get_Use_Image(void)
         line = 0;
         row++;
     }
-	rt_exit_critical();
+	//rt_exit_critical();
 }
 
 /**
@@ -83,7 +83,7 @@ void Get_Use_Image(void)
  */
 void Get_Bin_Image(unsigned char mode)
 {
-	rt_enter_critical();
+	//rt_enter_critical();
     unsigned short i = 0, j = 0;
     unsigned long tv = 0;
 
@@ -129,7 +129,7 @@ void Get_Bin_Image(unsigned char mode)
         }
     }
 		
-		rt_exit_critical();
+		//rt_exit_critical();
 		
 }
 
@@ -401,7 +401,7 @@ void Bin_Image_Filter (void)
  */
 void Seek_Beacon (void)
 {
-	rt_enter_critical();
+	//rt_enter_critical();
   uint8 nr=0; //行
   uint8 nc=0; //列
   
@@ -417,7 +417,7 @@ void Seek_Beacon (void)
       }
     }
   }
-  rt_exit_critical();
+  //rt_exit_critical();
 }
 
 float Camera_Control(void)
@@ -443,7 +443,12 @@ float Camera_Control(void)
 	//rt_exit_critical();
 }
 
-
+/**
+ * @description: 展示二值化后的赛道图，显示可能有误
+ * @param {*}
+ * @return {*}
+ * @author: 郑有才
+ */
 void showBeacon()
 {
     uint32 i,j;
@@ -473,3 +478,54 @@ void showBeacon()
         }
     }
 }
+
+/**
+ * @description: camera线程入口
+ * @param {void} *parameter
+ * @return {*}
+ * @author: 郑有才
+ */
+void camera_entry(void *parameter)
+{
+    while(1)
+    {
+
+            rt_sem_take(camera_sem, RT_WAITING_FOREVER);
+            rt_sem_control(camera_sem, RT_IPC_CMD_RESET, RT_NULL); 
+            
+            camera_dif = Camera_Control();
+            //printf("%f\r\n",camera_dif);
+            mt9v03x_finish_flag=0;
+
+        
+        
+        rt_thread_mdelay(0);
+         //showBeacon();
+    }
+}
+
+/**
+ * @description: 
+ * @param {*}
+ * @return {*}
+ * @author: 郑有才
+ */
+void camera_init(void)
+{
+    rt_thread_t tid;
+
+    //初始化摄像头
+    mt9v03x_init();
+
+    //创建图片处理线程， 优先级设置为10
+    tid = rt_thread_create("camera", camera_entry, RT_NULL, 1024, 6, 30);
+
+    //启动图片线程
+    if(RT_NULL != tid) 
+    {
+        rt_thread_startup(tid);
+    }
+}
+
+
+
